@@ -19,6 +19,7 @@ import javax.inject.Inject
 class TodoViewModel @Inject constructor(private var repo: TodoRepository) : ViewModel() {
     private var _uiEvents = Channel<UiEvents>()
     var uiEvents: Flow<UiEvents> = _uiEvents.receiveAsFlow()
+    var todos = repo.getAllTodo()
     private var recentlyDeletedTodo: Todo? = null
     fun onEvent(event: TodoEvents) {
         when (event) {
